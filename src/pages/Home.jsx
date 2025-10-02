@@ -2,6 +2,8 @@ import React from "react";
 import { Search, MapPin, Calendar, Zap } from "lucide-react";
 import landingPageBG from "../assets/LandingPage-bg.jpg";
 import Features from "../components/landingpage/features";
+import MapBox from "../components/landingpage/MapBox";
+import SearchBox from '../components/landingpage/SearchBox'
 
 export default function Home({ onStartAnalysis }) {
   return (
@@ -61,7 +63,10 @@ export default function Home({ onStartAnalysis }) {
                     <MapPin className="h-4 w-4 mr-2" />
                     Drop Pin on Map
                   </button>
-                  {/* leafletmap */}
+                </div>
+
+                <div className="mt-4">
+                  <MapBox />
                 </div>
               </div>
 
