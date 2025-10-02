@@ -4,11 +4,11 @@ import { MapPin, Calendar } from "lucide-react";
 function HistoryCard({ location, dateRange, searchedAt }) {
   return (
     <article
-      className="bg-[#1a222e]/70 border border-[#00B8D9]/20 rounded-xl p-5 shadow-md 
+      className="flex-1 bg-[#1a222e]/70 border border-[#00B8D9]/20 rounded-xl p-5 shadow-md 
                  transition-transform duration-200 
-                 hover:-translate-y-[3px] hover:shadow-lg hover:border-[#00B8D9]/40"
+                 hover:-translate-y-[3px] hover:shadow-lg hover:border-[#00B8D9]/40 hover:cursor-pointer"
     >
-      <section className="flex justify-between items-start">
+      <section className="flex flex-col sm:flex-row justify-between items-start">
         <section>
           <div className="flex items-center mb-2">
             <MapPin className="h-4 w-4 text-[#00B8D9] mr-2" />
@@ -28,11 +28,11 @@ function HistoryCard({ location, dateRange, searchedAt }) {
           </span>
         </section>
 
-        <section >
+        <section className="w-full sm:w-auto">
           <button
-            className="bg-[#00B8D9] text-white text-sm px-4  py-2 rounded-lg font-medium 
+            className="w-full sm:w-auto mt-5 hover:cursor-pointer bg-[#00B8D9] text-white text-sm px-4  py-2 rounded-lg font-medium 
                        hover:bg-[#009bb5] focus:outline-none focus:ring-2 focus:ring-[#00B8D9]/50
-                       transition-colors duration-200 shadow-md mt-5"
+                       transition-colors duration-200 shadow-md gap-4"
             aria-label={`View analysis for ${location}`}
           >
             View Analysis

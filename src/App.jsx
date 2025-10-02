@@ -10,6 +10,9 @@ import History from './pages/History'
 import NavDashboard from './components/dashboard/NavDashboard'
 import Login from './pages/loginPage'
 import Signup from './pages/signupPage'
+import ProfileNav from './components/profile/ProfileNavigation'
+import Profile from './pages/settings/Profile'
+import Security from './pages/settings/Security'
 function App() {
   return (
     <div>
@@ -25,6 +28,11 @@ function App() {
         <Route path="/dashboard/*" element={<NavDashboard />}>
           <Route path="analytics" element={<Analytics />} />
           <Route path="history" element={<History />} />
+        </Route>
+        {/* settings */}
+        <Route path="/settings/*" element={<ProfileNav/>}>
+          <Route path="profile" element={<Profile />} />
+          <Route path="security" element={<Security />} />
         </Route>
       </Routes>
     </div>

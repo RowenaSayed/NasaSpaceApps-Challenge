@@ -1,10 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Cloud, User, BarChart3, Info, Menu, X, Home } from "lucide-react";
 
 export default function Navigation({ currentPage }) {
   const [isOpen, setIsOpen] = useState(false);
-  const token = localStorage.getItem('token');
+  const [profileOpen, setProfileOpen] = useState(false);
+  const token = localStorage.getItem("token");
+  const navigate=useNavigate()
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setProfileOpen(false);
+    navigate('/')
+  };
 
   return (
     <header className="sticky top-0 z-100">
@@ -13,7 +21,6 @@ export default function Navigation({ currentPage }) {
         aria-label="Main Navigation"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo */}
           <Link
             to="/"
             className="flex items-center space-x-2"
@@ -28,7 +35,7 @@ export default function Navigation({ currentPage }) {
             </span>
           </Link>
 
-          {/* Hamburger (mobile only) */}
+          {/* ========================================================== */}
           <button
             className="md:hidden text-white"
             onClick={() => setIsOpen(!isOpen)}
@@ -37,7 +44,7 @@ export default function Navigation({ currentPage }) {
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
 
-          {/* Navigation Links */}
+          {/* ========================================================== */}
           <ul
             className={`flex-col md:flex-row md:flex items-center space-y-4 md:space-y-0 md:space-x-4 
               ${
@@ -97,17 +104,39 @@ export default function Navigation({ currentPage }) {
               </Link>
             </li>
 
-            <li>
+            <li className="relative">
               {token ? (
-                <Link
-                  to="/profile"
-                  className="flex items-center justify-center h-8 w-8 rounded-full bg-[#161B22] text-white hover:ring-2 hover:ring-[#00B8D9] transition"
-                  title="User Profile"
-                  aria-label="User Profile"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <User className="h-4 w-4" />
-                </Link>
+                <>
+                  <button
+                    onClick={() => setProfileOpen(!profileOpen)}
+                    className="flex items-center justify-center h-8 w-8 rounded-full bg-[#161B22] text-white hover:ring-2 hover:ring-[#00B8D9] transition"
+                    title="User Menu"
+                    aria-label="User Menu"
+                  >
+                    <User className="h-4 w-4" />
+                  </button>
+
+                  {profileOpen && (
+                    <div className="absolute right-0 mt-2 w-40 bg-[#161B22] text-white rounded-md shadow-lg">
+                      <Link
+                        to="settings/profile"
+                        onClick={() => {
+                          setProfileOpen(false);
+                          setIsOpen(false);
+                        }}
+                        className="block px-4 py-2 hover:bg-[#00B8D9] hover:text-black transition"
+                      >
+                        Profile
+                      </Link>
+                      <button
+                        onClick={handleLogout}
+                        className="block w-full text-left px-4 py-2 text-red-500 bg-red-100  hover:bg-red-500 hover:text-white transition"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                </>
               ) : (
                 <Link
                   to="/login"
