@@ -71,8 +71,7 @@ export default function MapBox({ searchQuery, onResults, selected }) {
         )}`,
         {
           headers: {
-            "User-Agent":
-              "NasaSpaceApp/1.0 (https://rowenasayed.github.io/NasaSpaceApps-Challenge/)",
+            "User-Agent": "MyReactApp/1.0 (contact: noursayed200408@gmail.com)",
           },
         }
       )
