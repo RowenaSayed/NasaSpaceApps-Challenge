@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
 export default defineConfig({
-  base: '/Nasa-Space-Apps-Challenge/',   // مهم لرفع على GitHub Pages
+  base: '/NasaSpaceApps-Challenge/',   
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
@@ -14,8 +14,9 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
-    outDir: 'dist',  
+    outDir: 'docs',   
   },
+
   server: {
     port: 3000,
     open: true,
