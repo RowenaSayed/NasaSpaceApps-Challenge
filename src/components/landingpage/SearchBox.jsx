@@ -6,12 +6,12 @@ export default function SearchBox() {
   const [text, setText] = useState("");
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-  const [selected, setSelected] = useState(null); 
+  const [selected, setSelected] = useState(null);
 
   const handleSearch = (e) => {
     e.preventDefault();
     setQuery(text);
-    setSelected(null); 
+    setSelected(null);
   };
 
   return (
@@ -71,7 +71,7 @@ export default function SearchBox() {
           <div className="relative">
             <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
-              type="month"
+              type="date"
               className="w-full h-12 pl-10 rounded-lg bg-[#0D1117] border border-[#00B8D9]/30 text-white focus:ring-2 focus:ring-[#00B8D9]"
             />
           </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { Search, MapPin, Calendar, Zap } from "lucide-react";
 import landingPageBG from "../assets/LandingPage-bg.jpg";
 import Features from "../components/landingpage/features";
-import MapBox from "../components/landingpage/MapBox";
+// import MapBox from "../components/landingpage/MapBox";
 import SearchBox from '../components/landingpage/SearchBox'
 
 export default function Home({ onStartAnalysis }) {
@@ -40,61 +40,7 @@ export default function Home({ onStartAnalysis }) {
           </header>
 
           {/* Search Box */}
-          <section className="mt-12 bg-[#161B22]/90 border border-[#00B8D9]/20 rounded-xl shadow-lg p-8 backdrop-blur-sm">
-            <form className="space-y-6">
-              {/* Location */}
-              <div>
-                <label className="block text-left text-[#00B8D9] mb-2">
-                  Location
-                </label>
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Enter city or click on map..."
-                    className="w-full h-12 pl-10 rounded-lg bg-[#0D1117] border border-[#00B8D9]/30 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#00B8D9]"
-                  />
-                </div>
-                <div className="flex gap-3 mt-3">
-                  <button
-                    type="button"
-                    className="flex items-center px-4 py-2 rounded-md border border-[#00B8D9]/30 text-[#00B8D9] hover:bg-[#00B8D9]/10"
-                  >
-                    <MapPin className="h-4 w-4 mr-2" />
-                    Drop Pin on Map
-                  </button>
-                </div>
-
-                <div className="mt-4">
-                  <MapBox />
-                </div>
-              </div>
-
-              {/* Date Range */}
-              <div>
-                <label className="block text-left text-[#00B8D9] mb-2">
-                  Date Range
-                </label>
-                <div className="relative">
-                  <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  <input
-                    type="month"
-                    placeholder="Select date or range (e.g., July 15, Summer months)"
-                    className="w-full h-12 pl-10 rounded-lg bg-[#0D1117] border border-[#00B8D9]/30 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#00B8D9]"
-                  />
-                </div>
-              </div>
-
-              <button
-                type="button"
-                onClick={onStartAnalysis}
-                className="transition-transform duration-150 hover:translate-y-[-3px] w-full h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-[#00B8D9] to-[#00B8D9]/80 hover:from-[#00B8D9]/90 hover:to-[#00B8D9]/70 hover:cursor-pointer md:text-lg sm:text-sm font-medium"
-              >
-                <Zap className="h-5 w-5 mr-2" />
-                Analyze Weather Probability
-              </button>
-            </form>
-          </section>
+         <SearchBox/>
 
           {/* Features */}
           <section className="grid md:grid-cols-3 gap-6 mt-12">
