@@ -23,9 +23,7 @@ The project is a web application designed to help users analyze weather conditio
 ---
 
 ## Technology Stack
-- HTML, CSS, JavaScript  
-- Leaflet.js for map integration  
-- OpenWeather API (prototype data source, with plans to extend to NASA POWER API)  
+  
 
 ---
 
