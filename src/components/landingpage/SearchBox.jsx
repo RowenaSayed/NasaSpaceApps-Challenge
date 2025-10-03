@@ -28,7 +28,10 @@ export default function SearchBox() {
           text
         )}&start=${startDate}&end=${endDate}`
       );
-      if (!response.ok) throw new Error("Failed to fetch weather data");
+      if (!response.ok) {
+        e.preventDefault();
+        throw new Error("Failed to fetch weather data");
+      }
       const data = await response.json();
       setWeatherData(data);
     } catch (err) {
