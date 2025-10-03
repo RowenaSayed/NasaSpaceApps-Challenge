@@ -22,16 +22,6 @@ function ProfileNav() {
               </Link>
             </li>
 
-            <li>
-              <Link
-                to="/settings/security"
-                className="flex items-center px-4 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-[#00B8D9]/20 transition-colors"
-                title="Go to security"
-              >
-                <LockIcon className="h-4 w-4 mr-2 text-[#00B8D9]" />
-                Security
-              </Link>
-            </li>
           </ul>
         </div>
       </nav>

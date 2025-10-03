@@ -1,64 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HistoryCard from "../components/dashboard/HistoryCard";
-import { HistoryIcon } from "lucide-react";
 
 function History() {
-  const historyData = [
-    {
-      id: 1,
-      location: "Cairo, Egypt",
-      dateRange: "July 10 - July 20",
-      searchedAt: "Sep 28, 2025",
-    },
-    {
-      id: 2,
-      location: "New York, USA",
-      dateRange: "Winter Season",
-      searchedAt: "Sep 29, 2025",
-    },
-    {
-      id: 3,
-      location: "Tokyo, Japan",
-      dateRange: "Aug 15",
-      searchedAt: "Sep 30, 2025",
-    },
-    {
-      id: 10,
-      location: "Cairo, Egypt",
-      dateRange: "July 10 - July 20",
-      searchedAt: "Sep 28, 2025",
-    },
-    {
-      id: 20,
-      location: "New York, USA",
-      dateRange: "Winter Season",
-      searchedAt: "Sep 29, 2025",
-    },
-    {
-      id: 30,
-      location: "Tokyo, Japan",
-      dateRange: "Aug 15",
-      searchedAt: "Sep 30, 2025",
-    },
-    {
-      id: 100,
-      location: "Cairo, Egypt",
-      dateRange: "July 10 - July 20",
-      searchedAt: "Sep 28, 2025",
-    },
-    {
-      id: 200,
-      location: "New York, USA",
-      dateRange: "Winter Season",
-      searchedAt: "Sep 29, 2025",
-    },
-    {
-      id: 300,
-      location: "Tokyo, Japan",
-      dateRange: "Aug 15",
-      searchedAt: "Sep 30, 2025",
-    },
-  ];
+  const [historyData, setHistoryData] = useState([]);
+
+  useEffect(() => {
+    const fetchHistory = async () => {
+      try {
+        const res = await fetch(
+          "http://WeatherAPI.somee.com/api/Weather/AllHistory",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        if (!res.ok) throw new Error("Failed to fetch history");
+        const data = await res.json();
+        setHistoryData(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchHistory();
+  }, []);
 
   return (
     <main className="min-h-screen w-full bg-gradient-to-br from-[#0D1117] via-[#161B22] to-[#0D1117] text-white px-6 py-10">
@@ -67,9 +33,11 @@ function History() {
         {historyData.map((item) => (
           <HistoryCard
             key={item.id}
-            location={item.location}
-            dateRange={item.dateRange}
-            searchedAt={item.searchedAt}
+            location={`${item.city}, ${item.country}`}
+            city={item.city}
+            startDate={item.startDate}
+            endDate={item.endDate}
+            searchedAt={item.searchedAT}
           />
         ))}
       </section>

@@ -45,7 +45,6 @@ function RecenterMap({ position }) {
 export default function MapBox({ searchQuery, onResults, selected }) {
   const [position, setPosition] = useState(null);
 
-  // get user location OR fallback
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -94,8 +93,9 @@ export default function MapBox({ searchQuery, onResults, selected }) {
   /// if i used drop pin
   useEffect(() => {
     if (selected) {
-      const { lat, lon } = selected;
+      const { lat, lon,name } = selected;
       setPosition([parseFloat(lat), parseFloat(lon)]);
+      searchQuery=name
     }
   }, [selected]);
 

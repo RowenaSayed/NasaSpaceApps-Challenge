@@ -9,9 +9,11 @@ export default function Navigation({ currentPage }) {
   const token = localStorage.getItem("token");
   const navigate=useNavigate()
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setProfileOpen(false);
-    navigate('/')
+    setTimeout(() => {
+      localStorage.removeItem("token");
+      setProfileOpen(false);
+      navigate("/");
+    },1000)
   };
 
   return (
@@ -109,7 +111,7 @@ export default function Navigation({ currentPage }) {
                 <>
                   <button
                     onClick={() => setProfileOpen(!profileOpen)}
-                    className="flex items-center justify-center h-8 w-8 rounded-full bg-[#161B22] text-white hover:ring-2 hover:ring-[#00B8D9] transition"
+                    className="flex items-center justify-center h-8 w-8 rounded-full bg-[#161B22] text-white hover:ring-2 hover:ring-[#00B8D9] hover:cursor-pointer transition"
                     title="User Menu"
                     aria-label="User Menu"
                   >

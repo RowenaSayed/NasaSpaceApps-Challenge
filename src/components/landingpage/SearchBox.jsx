@@ -1,17 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search, MapPin, Calendar, Zap } from "lucide-react";
 import MapBox from "./MapBox";
+import { Link } from "react-router-dom";
 
 export default function SearchBox() {
   const [text, setText] = useState("");
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [weatherData, setWeatherData] = useState(null);
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
     setQuery(text);
     setSelected(null);
+
+    if (!text || !startDate || !endDate) {
+      alert("Enter city and select start & end date");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://WeatherAPI.somee.com/api/Weather/GetWeatherData?city=${encodeURIComponent(
+          text
+        )}&start=${startDate}&end=${endDate}`
+      );
+      if (!response.ok) throw new Error("Failed to fetch weather data");
+      const data = await response.json();
+      setWeatherData(data);
+    } catch (err) {
+      console.error(err);
+      alert("Error fetching weather data");
+    }
   };
 
   return (
@@ -64,27 +87,56 @@ export default function SearchBox() {
           </div>
         </div>
 
-        <div>
-          <label className="block text-left text-[#00B8D9] mb-2">
-            Date Range
-          </label>
-          <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <input
-              type="date"
-              className="w-full h-12 pl-10 rounded-lg bg-[#0D1117] border border-[#00B8D9]/30 text-white focus:ring-2 focus:ring-[#00B8D9]"
-            />
+        <div className="flex gap-3">
+          <div className="w-1/2">
+            <label className="block text-left text-[#00B8D9] mb-2">
+              Start Date
+            </label>
+            <div className="relative">
+              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <input
+                type="date"
+                className="w-full h-12 pl-10 rounded-lg bg-[#0D1117] border border-[#00B8D9]/30 text-white focus:ring-2 focus:ring-[#00B8D9]"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="w-1/2">
+            <label className="block text-left text-[#00B8D9] mb-2">
+              End Date
+            </label>
+            <div className="relative">
+              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <input
+                type="date"
+                className="w-full h-12 pl-10 rounded-lg bg-[#0D1117] border border-[#00B8D9]/30 text-white focus:ring-2 focus:ring-[#00B8D9]"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+            </div>
           </div>
         </div>
 
-        <button
-          type="button"
-          className="transition-transform duration-150 hover:translate-y-[-3px] w-full h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-[#00B8D9] to-[#00B8D9]/80 hover:from-[#00B8D9]/90 hover:to-[#00B8D9]/70 hover:cursor-pointer md:text-lg sm:text-sm font-medium"
+        <Link
+          to="/dashboard/analytics"
+          state={{ city: text, startDate, endDate }}
+          className="transition-transform duration-150 hover:translate-y-[-3px] w-full h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-[#00B8D9] to-[#00B8D9]/80 hover:from-[#00B8D9]/90 hover:to-[#00B8D9]/70 md:text-lg sm:text-sm font-medium"
         >
           <Zap className="h-5 w-5 mr-2" />
           Analyze Weather Probability
-        </button>
+        </Link>
       </form>
+
+      {/* {weatherData && (
+        <div className="mt-6 text-white">
+          <h3 className="font-bold text-lg mb-2">Weather Results:</h3>
+          <pre className="bg-[#0D1117] p-4 rounded-lg overflow-x-auto">
+            {JSON.stringify(weatherData, null, 2)}
+          </pre>
+        </div>
+      )} */}
     </section>
   );
 }
