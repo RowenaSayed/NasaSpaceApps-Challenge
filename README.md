@@ -11,7 +11,7 @@ The project is a web application designed to help users analyze weather conditio
 ---
 
 ## Screenshot
-<img width="1366" height="1107" alt="Website Screenshot" src="https://github.com/user-attachments/assets/d9f1a00f-a7a5-4e9d-86b2-dd1a4c6f7184" />
+<img width="1366" height="1576" alt="image" src="https://github.com/user-attachments/assets/2cdf77f0-7db7-415c-bc59-97cc0ced4709" />
 
 ---
 
