@@ -100,7 +100,7 @@ export default function MapBox({ searchQuery, onResults, selected }) {
   }, [selected]);
 
   return (
-    <div className="w-full h-[400px] rounded-lg overflow-hidden border border-[#00B8D9]/30">
+    <div className="w-full h-[200px] md:h-[400px] rounded-lg overflow-hidden border border-[#00B8D9]/30">
       <MapContainer
         center={position || defaultPosition}
         zoom={13}
