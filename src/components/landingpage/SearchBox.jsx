@@ -23,18 +23,18 @@ export default function SearchBox() {
     }
 
     try {
-      const response = await fetch(
-        `http://WeatherAPI.somee.com/api/Weather/GetWeatherData?city=${encodeURIComponent(
-          text
-        )}&start=${startDate}&end=${endDate}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem('token')}`, 
-          },
-        }
-      );
+        const response = await fetch(
+          `http://WeatherAPI.somee.com/api/Weather/GetWeatherData?city=${encodeURIComponent(
+            city
+          )}&start=${startDate}&end=${endDate}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
 
       if (!response.ok) {
         e.preventDefault();
@@ -107,6 +107,7 @@ export default function SearchBox() {
               <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
                 type="date"
+                max="2025-09-30"
                 className="w-full h-12 pl-10 rounded-lg bg-[#0D1117] border border-[#00B8D9]/30 text-white focus:ring-2 focus:ring-[#00B8D9]"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
@@ -122,6 +123,7 @@ export default function SearchBox() {
               <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
                 type="date"
+                max="2025-09-30"
                 className="w-full h-12 pl-10 rounded-lg bg-[#0D1117] border border-[#00B8D9]/30 text-white focus:ring-2 focus:ring-[#00B8D9]"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}

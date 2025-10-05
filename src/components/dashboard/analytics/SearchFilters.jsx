@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaSearch,
   FaDownload,
@@ -33,12 +33,26 @@ export default function SearchFilters({
   onDownloadCSV,
   onDownloadJSON,
 }) {
+  const [tempCity, setTempCity] = useState(city);
+  const [tempStart, setTempStart] = useState(startDate);
+  const [tempEnd, setTempEnd] = useState(endDate);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [isExportOpen, setIsExportOpen] = useState(false);
 
+  useEffect(() => {
+    setTempCity(city);
+    setTempStart(startDate);
+    setTempEnd(endDate);
+  }, [city, startDate, endDate]);
+
+  const handleSearch = () => {
+    setCity(tempCity);
+    setStartDate(tempStart);
+    setEndDate(tempEnd);
+  };
+
   return (
     <>
-      {/* Mobile Header */}
       <div className="lg:hidden bg-gray-900 border-b border-gray-700 p-4">
         <div className="flex items-center gap-3 mb-4">
           <FaSatellite className="text-blue-400 text-xl" />
@@ -47,19 +61,17 @@ export default function SearchFilters({
           </h1>
         </div>
 
-        {/* Search Input */}
         <div className="relative mb-4">
           <input
             type="search"
             placeholder="Enter city name"
             className="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
+            value={tempCity}
+            onChange={(e) => setTempCity(e.target.value)}
           />
           <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
         </div>
 
-        {/* Date Inputs */}
         <div className="grid grid-cols-2 gap-3 mb-4">
           <div>
             <label className="text-sm text-blue-300 font-medium block mb-2">
@@ -67,9 +79,10 @@ export default function SearchFilters({
             </label>
             <input
               type="date"
+              max="2025-09-30"
               className="w-full px-3 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              value={tempStart}
+              onChange={(e) => setTempStart(e.target.value)}
             />
           </div>
           <div>
@@ -78,16 +91,22 @@ export default function SearchFilters({
             </label>
             <input
               type="date"
+              max="2025-09-30"
               className="w-full px-3 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
+              value={tempEnd}
+              onChange={(e) => setTempEnd(e.target.value)}
             />
           </div>
         </div>
 
-        {/* Mobile Accordions */}
+        <button
+          onClick={handleSearch}
+          className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg mb-4 transition duration-200"
+        >
+          <FaSearch /> Search
+        </button>
+
         <div className="space-y-2">
-          {/* Filters Accordion */}
           <div className="bg-gray-800 rounded-lg">
             <button
               onClick={() => setIsFiltersOpen(!isFiltersOpen)}
@@ -125,7 +144,6 @@ export default function SearchFilters({
             )}
           </div>
 
-          {/* Export Accordion */}
           <div className="bg-gray-800 rounded-lg">
             <button
               onClick={() => setIsExportOpen(!isExportOpen)}
@@ -163,9 +181,7 @@ export default function SearchFilters({
         </div>
       </div>
 
-      {/* Desktop Sidebar */}
-      <nav className="hidden lg:flex lg:flex-col lg:w-80 lg:h-[100vh] lg:sticky lg:top-0 bg-gradient-to-b from-gray-900 via-blue-900/20 to-gray-900 text-white p-6 border-r border-blue-500/20 overflow-y-auto">
-        {/* Header */}
+      <nav className="hidden lg:flex lg:flex-col lg:w-80 lg:min-h-screen lg:sticky lg:top-0 bg-gradient-to-b from-gray-900 via-blue-900/20 to-gray-900 text-white p-6 border-r border-blue-500/20 ">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <FaSatellite className="text-blue-400 text-xl" />
@@ -178,7 +194,6 @@ export default function SearchFilters({
           </p>
         </div>
 
-        {/* Search Section */}
         <section className="mb-8">
           <div className="flex items-center gap-2 mb-4">
             <FaMapMarkerAlt className="text-blue-400" />
@@ -192,8 +207,8 @@ export default function SearchFilters({
                 type="search"
                 placeholder="Enter city name"
                 className="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
+                value={tempCity}
+                onChange={(e) => setTempCity(e.target.value)}
               />
               <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
@@ -205,9 +220,10 @@ export default function SearchFilters({
                 </label>
                 <input
                   type="date"
+                  max="2025-09-30"
                   className="w-full px-3 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
+                  value={tempStart}
+                  onChange={(e) => setTempStart(e.target.value)}
                 />
               </div>
               <div>
@@ -216,16 +232,23 @@ export default function SearchFilters({
                 </label>
                 <input
                   type="date"
+                  max="2025-09-30"
                   className="w-full px-3 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
+                  value={tempEnd}
+                  onChange={(e) => setTempEnd(e.target.value)}
                 />
               </div>
             </div>
+
+            <button
+              onClick={handleSearch}
+              className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition duration-200"
+            >
+              <FaSearch /> Search
+            </button>
           </div>
         </section>
 
-        {/* Filters Section */}
         <section className="mb-8">
           <div className="flex items-center gap-2 mb-4">
             <FaFilter className="text-blue-400" />
@@ -253,8 +276,7 @@ export default function SearchFilters({
           </div>
         </section>
 
-        {/* Export Section */}
-        <section className="mt-auto">
+        <section className="mt-6">
           <div className="flex items-center gap-2 mb-4">
             <FaDownload className="text-blue-400" />
             <h2 className="text-lg font-semibold text-blue-300">Export Data</h2>
