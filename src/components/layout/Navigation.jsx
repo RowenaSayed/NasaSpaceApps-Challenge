@@ -33,7 +33,7 @@ export default function Navigation({ currentPage }) {
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-[#00B8D9] to-[#FF6B6B] rounded-full animate-pulse"></div>
             </div>
             <span className="text-xl text-white font-semibold">
-              WeatherScope
+              ClimaVision
             </span>
           </Link>
 
