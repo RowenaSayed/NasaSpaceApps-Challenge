@@ -38,11 +38,16 @@ export default function Analytics() {
     const fetchWeather = async () => {
       setLoading(true);
       try {
-        const res = await fetch(
-          `https://weatherapi.runasp.net/api/Weather/GetWeatherData?city=${encodeURIComponent(
-            city
-          )}&start=${startDate}&end=${endDate}`
-        );
+         const res = await fetch(
+           `https://weatherapi.runasp.net/api/Weather/GetWeatherData?city=${encodeURIComponent(
+             city
+           )}&start=${startDate}&end=${endDate}`,
+           {
+             headers: {
+               Authorization: `Bearer ${localStorage.getItem("token")}`,
+             },
+           }
+         );
         if (!res.ok) throw new Error("Failed to fetch weather data");
         const data = await res.json();
         setWeatherData(data);
