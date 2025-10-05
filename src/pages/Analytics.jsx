@@ -81,14 +81,17 @@ export default function Analytics() {
         tomorrow.setDate(tomorrow.getDate() + 1);
         const dateString = tomorrow.toISOString().split("T")[0];
 
-        const response = await fetch("/predict", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            city: city.charAt(0).toUpperCase() + city.slice(1),
-            date: dateString,
-          }),
-        });
+        const response = await fetch(
+          "https://b583bb8c-3a38-440a-8403-716fb2dd6883-00-335ca372v7t0d.picard.replit.dev/predict",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              city: city.charAt(0).toUpperCase() + city.slice(1),
+              date: dateString,
+            }),
+          }
+        );
 
         const data = await response.json();
         console.log(data)
@@ -235,15 +238,18 @@ export default function Analytics() {
                       onChange={async (e) => {
                         const newDate = e.target.value;
                         try {
-                          const res = await fetch("/predict", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({
-                              city:
-                                city.charAt(0).toUpperCase() + city.slice(1),
-                              date: newDate,
-                            }),
-                          });
+                          const res = await fetch(
+                            "https://b583bb8c-3a38-440a-8403-716fb2dd6883-00-335ca372v7t0d.picard.replit.dev/predict",
+                            {
+                              method: "POST",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify({
+                                city:
+                                  city.charAt(0).toUpperCase() + city.slice(1),
+                                date: newDate,
+                              }),
+                            }
+                          );
                           const data = await res.json();
                           if (!data.error) {
                             setPrediction({
