@@ -85,6 +85,7 @@ export default function Analytics() {
           "https://b583bb8c-3a38-440a-8403-716fb2dd6883-00-335ca372v7t0d.picard.replit.dev/predict",
           {
             method: "POST",
+            mode: "cors",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               city: city.charAt(0).toUpperCase() + city.slice(1),
@@ -242,6 +243,7 @@ export default function Analytics() {
                             "https://b583bb8c-3a38-440a-8403-716fb2dd6883-00-335ca372v7t0d.picard.replit.dev/predict",
                             {
                               method: "POST",
+                              mode: "cors",
                               headers: { "Content-Type": "application/json" },
                               body: JSON.stringify({
                                 city:
