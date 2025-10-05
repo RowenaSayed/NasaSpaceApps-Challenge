@@ -39,7 +39,7 @@ export default function Analytics() {
       setLoading(true);
       try {
         const res = await fetch(
-          `http://WeatherAPI.somee.com/api/Weather/GetWeatherData?city=${encodeURIComponent(
+          `https://weatherapi.runasp.net/api/Weather/GetWeatherData?city=${encodeURIComponent(
             city
           )}&start=${startDate}&end=${endDate}`
         );
@@ -109,7 +109,12 @@ export default function Analytics() {
       city,
       start: startDate,
       end: endDate,
-      ...filters,
+      includeTempMax: filters.tempMax,
+      includeTempMin: filters.tempMin,
+      includeHumidity: filters.humidity,
+      includeSunshine: filters.sunshine,
+      includePrecipitation: filters.precipitation,
+      includeWind: filters.wind,
     });
 
     const url = `http://WeatherAPI.somee.com/api/Weather/download-csv?${params.toString()}`;
@@ -126,7 +131,12 @@ export default function Analytics() {
       city,
       start: startDate,
       end: endDate,
-      ...filters,
+      includeTempMax: filters.tempMax,
+      includeTempMin: filters.tempMin,
+      includeHumidity: filters.humidity,
+      includeSunshine: filters.sunshine,
+      includePrecipitation: filters.precipitation,
+      includeWind: filters.wind,
     });
 
     const url = `http://WeatherAPI.somee.com/api/Weather/download-json?${params.toString()}`;
@@ -135,6 +145,7 @@ export default function Analytics() {
     a.download = `${city}_weather.json`;
     a.click();
   };
+
 
   return (
     <main className="flex flex-col lg:flex-row min-h-screen bg-gradient-to-br from-gray-900 to-black">

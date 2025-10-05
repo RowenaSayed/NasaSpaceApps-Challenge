@@ -8,7 +8,7 @@ function History() {
     const fetchHistory = async () => {
       try {
         const res = await fetch(
-          "http://WeatherAPI.somee.com/api/Weather/AllHistory",
+          "https://weatherapi.runasp.net/api/Weather/AllHistory",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

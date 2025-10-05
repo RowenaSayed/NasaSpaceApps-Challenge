@@ -44,7 +44,7 @@ const handleSubmit = async (e) => {
 
   try {
     const res = await fetch(
-      "http://WeatherAPI.somee.com/api/Account/register",
+      "https://weatherapi.runasp.net/api/Account/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

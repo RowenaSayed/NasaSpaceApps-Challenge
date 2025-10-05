@@ -24,14 +24,17 @@ function Login() {
     setError("");
 
     try {
-      const res = await fetch("http://WeatherAPI.somee.com/api/Account/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          Email: user.Email,
-          Password: user.Password,
-        }),
-      });
+      const res = await fetch(
+        "https://weatherapi.runasp.net/api/Account/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            Email: user.Email,
+            Password: user.Password,
+          }),
+        }
+      );
 
       let data;
       const text = await res.text();
