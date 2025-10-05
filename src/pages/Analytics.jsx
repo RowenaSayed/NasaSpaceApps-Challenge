@@ -117,7 +117,7 @@ export default function Analytics() {
       includeWind: filters.wind,
     });
 
-    const url = `http://WeatherAPI.somee.com/api/Weather/download-csv?${params.toString()}`;
+    const url = `https://weatherapi.runasp.net/api/Weather/download-csv?${params.toString()}`;
     const a = document.createElement("a");
     a.href = url;
     a.download = `${city}_weather.csv`;
@@ -139,7 +139,7 @@ export default function Analytics() {
       includeWind: filters.wind,
     });
 
-    const url = `http://WeatherAPI.somee.com/api/Weather/download-json?${params.toString()}`;
+    const url = `https://weatherapi.runasp.net/api/Weather/download-json?${params.toString()}`;
     const a = document.createElement("a");
     a.href = url;
     a.download = `${city}_weather.json`;
