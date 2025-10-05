@@ -26,8 +26,16 @@ export default function SearchBox() {
       const response = await fetch(
         `http://WeatherAPI.somee.com/api/Weather/GetWeatherData?city=${encodeURIComponent(
           text
-        )}&start=${startDate}&end=${endDate}`
+        )}&start=${startDate}&end=${endDate}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem('token')}`, 
+          },
+        }
       );
+
       if (!response.ok) {
         e.preventDefault();
         throw new Error("Failed to fetch weather data");
